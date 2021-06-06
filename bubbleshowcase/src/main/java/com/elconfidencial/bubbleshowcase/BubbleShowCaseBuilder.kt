@@ -2,7 +2,7 @@ package com.elconfidencial.bubbleshowcase
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewTreeObserver
 import java.lang.ref.WeakReference
@@ -14,6 +14,7 @@ import java.util.ArrayList
 class BubbleShowCaseBuilder{
 
     internal var mActivity: WeakReference<Activity>? = null
+    internal var mRootView: View? = null
     internal var mImage: Drawable? = null
     internal var mTitle: String? = null
     internal var mSubtitle: String? = null
@@ -40,6 +41,14 @@ class BubbleShowCaseBuilder{
      */
     constructor(activity: Activity){
         mActivity = WeakReference(activity)
+    }
+
+    /**
+     * Title of the BubbleShowCase. This text is bolded in the view.
+     */
+    fun viewRoot(view: View?): BubbleShowCaseBuilder {
+        mRootView = view
+        return this
     }
 
     /**
@@ -72,7 +81,7 @@ class BubbleShowCaseBuilder{
      *  - If this param is not passed, the BubbleShowCase will not have main image
      */
     fun imageResourceId(resId: Int): BubbleShowCaseBuilder {
-        mImage = ContextCompat.getDrawable(mActivity!!.get(), resId)
+        mImage = mActivity!!.get()?.let { ContextCompat.getDrawable(it, resId) }
         return this
     }
 
@@ -90,7 +99,7 @@ class BubbleShowCaseBuilder{
      *  - If this param is not defined, a default close icon is displayed
      */
     fun closeActionImageResourceId(resId: Int): BubbleShowCaseBuilder {
-        mCloseAction = ContextCompat.getDrawable(mActivity!!.get(), resId)
+        mCloseAction = mActivity!!.get()?.let { ContextCompat.getDrawable(it, resId) }
         return this
     }
 
@@ -109,7 +118,7 @@ class BubbleShowCaseBuilder{
      *  - #3F51B5 color will be set if this param is not defined
      */
     fun backgroundColorResourceId(colorResId: Int): BubbleShowCaseBuilder {
-        mBackgroundColor = ContextCompat.getColor(mActivity!!.get(), colorResId)
+        mBackgroundColor = mActivity!!.get()?.let { ContextCompat.getColor(it, colorResId) }
         return this
     }
 
@@ -127,7 +136,7 @@ class BubbleShowCaseBuilder{
      *  - White color will be set if this param is not defined
      */
     fun textColorResourceId(colorResId: Int): BubbleShowCaseBuilder {
-        mTextColor = ContextCompat.getColor(mActivity!!.get(), colorResId)
+        mTextColor = mActivity!!.get()?.let { ContextCompat.getColor(it, colorResId) }
         return this
     }
 
