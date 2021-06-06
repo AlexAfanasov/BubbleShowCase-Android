@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/showCaseMessageViewLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="36dp"
+    android:maxWidth="420dp"
     android:paddingLeft="36dp"
-    android:paddingRight="20dp"
     android:paddingTop="20dp"
-    android:maxWidth="420dp">
+    android:paddingRight="20dp"
+    android:paddingBottom="36dp">
 
     <ImageView
         android:id="@+id/imageViewShowCase"
@@ -17,9 +16,9 @@
         android:layout_height="48dp"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:visibility="gone"
         android:layout_marginTop="16dp"
         android:src="@drawable/rounded_rectangle"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,12 +39,13 @@
             android:id="@+id/textViewShowCaseTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
             android:breakStrategy="simple"
+            android:gravity="center"
+            android:text="Title"
             android:textColor="@color/white"
-            android:visibility="gone"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textViewShowCaseText"
@@ -53,9 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:breakStrategy="simple"
-            android:visibility="gone"
+            android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -67,6 +68,7 @@
         android:padding="11dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_close"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
