@@ -133,21 +133,19 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
             //Add the background dim layout above the root view
             val animation = AnimationUtils.getFadeInAnimation(0, DURATION_BACKGROUND_ANIMATION)
             backgroundDimLayout?.let {
-                val test = ViewCompat.getZ(rootView.parent as View)
-                val test2 = ViewCompat.getZ(mRootView as View)
                 val containerLayout =
                     mRootView.findViewById<FrameLayout>(com.google.android.material.R.id.container)
                 ViewCompat.setTranslationZ(
                     backgroundDimLayout!!,
                     ViewCompat.getZ(rootView.parent as View)
                 )
-                rootView.addView(
+                containerLayout.addView(
                     AnimationUtils.setAnimationToView(
                         backgroundDimLayout!!,
                         animation
                     ), -1
                 )
-//                containerLayout.requestLayout()
+                containerLayout.requestLayout()
             }
         }
     }
