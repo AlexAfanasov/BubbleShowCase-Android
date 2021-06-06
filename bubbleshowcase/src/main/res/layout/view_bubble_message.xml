@@ -8,6 +8,7 @@
     android:paddingLeft="36dp"
     android:paddingTop="20dp"
     android:paddingRight="20dp"
+    android:elevation="8dp"
     android:paddingBottom="36dp">
 
     <ImageView
