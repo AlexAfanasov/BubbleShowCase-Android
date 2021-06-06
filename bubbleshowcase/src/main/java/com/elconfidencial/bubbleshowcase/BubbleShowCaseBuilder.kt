@@ -171,7 +171,7 @@ class BubbleShowCaseBuilder{
      * If this variable is true, when user clicks on the target, the showcase will not be dismissed
      *  Default value -> false
      */
-    fun disableTargetClick(isDisabled: Boolean): BubbleShowCaseBuilder{
+    fun disableTargetClick(isDisabled: Boolean): BubbleShowCaseBuilder {
         mDisableTargetClick = isDisabled
         return this
     }
@@ -180,7 +180,7 @@ class BubbleShowCaseBuilder{
      * If this variable is true, close action button will be gone
      *  Default value -> false
      */
-    fun disableCloseAction(isDisabled: Boolean): BubbleShowCaseBuilder{
+    fun disableCloseAction(isDisabled: Boolean): BubbleShowCaseBuilder {
         mDisableCloseAction = isDisabled
         return this
     }
@@ -235,12 +235,12 @@ class BubbleShowCaseBuilder{
         return this
     }
 
-    internal fun isFirstOfSequence(isFirst: Boolean): BubbleShowCaseBuilder{
+    internal fun isFirstOfSequence(isFirst: Boolean): BubbleShowCaseBuilder {
         mIsFirstOfSequence = isFirst
         return this
     }
 
-    internal fun isLastOfSequence(isLast: Boolean): BubbleShowCaseBuilder{
+    internal fun isLastOfSequence(isLast: Boolean): BubbleShowCaseBuilder {
         mIsLastOfSequence = isLast
         return this
     }
@@ -260,7 +260,7 @@ class BubbleShowCaseBuilder{
     /**
      * Show the BubbleShowCase using the params added previously
      */
-    fun show(): BubbleShowCase{
+    fun show(): BubbleShowCase {
         val bubbleShowCase = build()
         if (mTargetView != null) {
             val targetView = mTargetView!!.get()

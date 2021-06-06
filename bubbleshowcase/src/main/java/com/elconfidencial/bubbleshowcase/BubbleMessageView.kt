@@ -186,7 +186,10 @@ class BubbleMessageView : ConstraintLayout {
         when {
             isOutOfRightBound(targetViewLocationOnScreen) -> xPosition = width - getSecurityArrowMargin()
             isOutOfLeftBound(targetViewLocationOnScreen) -> xPosition = getSecurityArrowMargin()
-            else -> xPosition = Math.round(targetViewLocationOnScreen!!.centerX() - ScreenUtils.getAxisXpositionOfViewOnScreen(this))
+            else -> xPosition = Math.round(targetViewLocationOnScreen!!.centerX() - ScreenUtils.getAxisXpositionOfViewOnScreen(
+                this
+            )
+            )
         }
         return xPosition
     }
@@ -196,25 +199,36 @@ class BubbleMessageView : ConstraintLayout {
         when {
             isOutOfBottomBound(targetViewLocationOnScreen) -> yPosition = height - getSecurityArrowMargin()
             isOutOfTopBound(targetViewLocationOnScreen) -> yPosition = getSecurityArrowMargin()
-            else -> yPosition = Math.round(targetViewLocationOnScreen!!.centerY() + ScreenUtils.getStatusBarHeight(context) - ScreenUtils.getAxisYpositionOfViewOnScreen(this))
+            else -> yPosition = Math.round(targetViewLocationOnScreen!!.centerY() + ScreenUtils.getStatusBarHeight(
+                context
+            ) - ScreenUtils.getAxisYpositionOfViewOnScreen(this)
+            )
         }
         return yPosition
     }
 
     private fun isOutOfRightBound(targetViewLocationOnScreen: RectF?): Boolean {
-        return targetViewLocationOnScreen!!.centerX() > ScreenUtils.getAxisXpositionOfViewOnScreen(this) + width - getSecurityArrowMargin()
+        return targetViewLocationOnScreen!!.centerX() > ScreenUtils.getAxisXpositionOfViewOnScreen(
+            this
+        ) + width - getSecurityArrowMargin()
     }
 
     private fun isOutOfLeftBound(targetViewLocationOnScreen: RectF?): Boolean {
-        return targetViewLocationOnScreen!!.centerX() < ScreenUtils.getAxisXpositionOfViewOnScreen(this) + getSecurityArrowMargin()
+        return targetViewLocationOnScreen!!.centerX() < ScreenUtils.getAxisXpositionOfViewOnScreen(
+            this
+        ) + getSecurityArrowMargin()
     }
 
     private fun isOutOfBottomBound(targetViewLocationOnScreen: RectF?): Boolean {
-        return targetViewLocationOnScreen!!.centerY() > ScreenUtils.getAxisYpositionOfViewOnScreen(this) + height - getSecurityArrowMargin() - ScreenUtils.getStatusBarHeight(context)
+        return targetViewLocationOnScreen!!.centerY() > ScreenUtils.getAxisYpositionOfViewOnScreen(
+            this
+        ) + height - getSecurityArrowMargin() - ScreenUtils.getStatusBarHeight(context)
     }
 
     private fun isOutOfTopBound(targetViewLocationOnScreen: RectF?): Boolean {
-        return targetViewLocationOnScreen!!.centerY() < ScreenUtils.getAxisYpositionOfViewOnScreen(this) + getSecurityArrowMargin() - ScreenUtils.getStatusBarHeight(context)
+        return targetViewLocationOnScreen!!.centerY() < ScreenUtils.getAxisYpositionOfViewOnScreen(
+            this
+        ) + getSecurityArrowMargin() - ScreenUtils.getStatusBarHeight(context)
     }
 
 
@@ -253,7 +267,7 @@ class BubbleMessageView : ConstraintLayout {
         var mArrowPosition  = ArrayList<BubbleShowCase.ArrowPosition>()
         var mListener: OnBubbleMessageViewListener? = null
 
-        fun from(context: Context): Builder{
+        fun from(context: Context): Builder {
             mContext = WeakReference(context)
             return this
         }
@@ -283,7 +297,7 @@ class BubbleMessageView : ConstraintLayout {
             return this
         }
 
-        fun targetViewScreenLocation(targetViewLocationOnScreen: RectF): Builder{
+        fun targetViewScreenLocation(targetViewLocationOnScreen: RectF): Builder {
             mTargetViewScreenLocation = targetViewLocationOnScreen
             return this
         }
@@ -319,7 +333,7 @@ class BubbleMessageView : ConstraintLayout {
             return this
         }
 
-        fun build(): BubbleMessageView{
+        fun build(): BubbleMessageView {
             return BubbleMessageView(mContext.get()!!, this)
         }
     }

@@ -4,13 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Point
-import android.graphics.Rect
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.view.Window.ID_ANDROID_CONTENT
-
 
 
 /**

@@ -40,7 +40,7 @@ class BubbleShowCaseSequence{
                 mBubbleShowCaseBuilderList[position].isLastOfSequence(false)
             }
         }
-        mBubbleShowCaseBuilderList[position].sequenceListener(object : SequenceShowCaseListener{
+        mBubbleShowCaseBuilderList[position].sequenceListener(object : SequenceShowCaseListener {
             override fun onDismiss() {
                 show(position + 1)
             }

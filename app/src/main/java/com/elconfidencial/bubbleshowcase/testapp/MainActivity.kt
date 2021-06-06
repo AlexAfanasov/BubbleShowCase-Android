@@ -1,4 +1,4 @@
-package com.elconfidencial.bubbleshowcase
+package com.elconfidencial.bubbleshowcase.testapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.support.v7.view.menu.ActionMenuItemView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.elconfidencial.bubbleshowcase.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,14 +30,14 @@ class MainActivity : AppCompatActivity() {
 
     //SHOW CASES GETTERS
 
-    private fun getSimpleShowCaseBuilder(): BubbleShowCaseBuilder{
+    private fun getSimpleShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this)
                 .title("Welcome!!!")
                 .description("This is a simple BubbleShowCase with default values.")
                 .targetView(buttonSimpleShowCase)
     }
 
-    private fun getCustomColorShowCaseBuilder(): BubbleShowCaseBuilder{
+    private fun getCustomColorShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this)
                 .title("Custom your bubble style!")
                 .description("It is possible to change the text color, background ... and you can even add an image into your bubble.")
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 .targetView(buttonColorShowCase)
     }
 
-    private fun getTextSizeShowCaseBuilder(): BubbleShowCaseBuilder{
+    private fun getTextSizeShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this)
                 .title("Change text sizes!")
                 .description("You can also choose the best text size for you.")
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 .targetView(buttonTextSizeShowCase)
     }
 
-    private fun getArrowLeftShowCaseBuilder(): BubbleShowCaseBuilder{
+    private fun getArrowLeftShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this)
                 .title("Force the position of the bubble!")
                 .description("You only have to specify in which side you want the arrow, and the bubble will be located depending on it.")
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 .targetView(buttonArrowLeftShowCase)
     }
 
-    private fun getArrowRightShowCaseBuilder(): BubbleShowCaseBuilder{
+    private fun getArrowRightShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this)
                 .title("Arrow set on right side this time :)")
                 .arrowPosition(BubbleShowCase.ArrowPosition.RIGHT)
@@ -77,13 +78,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun getListenerShowCaseBuilder(): BubbleShowCaseBuilder{
+    private fun getListenerShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this)
                 .title("Listen user actions!")
                 .description("You can detect when the user interacts with the different view elements to act consequently.")
                 .backgroundColor(ContextCompat.getColor(this, R.color.colorOrange))
                 .image(ContextCompat.getDrawable(this, R.drawable.ic_sentiment_satisfied)!!)
-                .listener(object : BubbleShowCaseListener{
+                .listener(object : BubbleShowCaseListener {
                     override fun onBubbleClick(bubbleShowCase: BubbleShowCase) {
                         Toast.makeText(this@MainActivity, "OnBubbleClick", Toast.LENGTH_SHORT).show()
                     }
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 .targetView(buttonEventListener)
     }
 
-    private fun getSequence(): BubbleShowCaseSequence{
+    private fun getSequence(): BubbleShowCaseSequence {
         return BubbleShowCaseSequence().addShowCases(listOf(
                 getSimpleShowCaseBuilder(),
                 getCustomColorShowCaseBuilder(),

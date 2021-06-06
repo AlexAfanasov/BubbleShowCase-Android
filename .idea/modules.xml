@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BubbleShowCase.iml" filepath="$PROJECT_DIR$/BubbleShowCase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bubbleshowcase/bubbleshowcase.iml" filepath="$PROJECT_DIR$/bubbleshowcase/bubbleshowcase.iml" />
-      <module fileurl="file://C:\Users\jcampos\StudioProjects\BubbleShowCase\bubbleshowcaseview\bubbleshowcaseview.iml" filepath="C:\Users\jcampos\StudioProjects\BubbleShowCase\bubbleshowcaseview\bubbleshowcaseview.iml" />
-      <module fileurl="file://C:\Users\jcampos\StudioProjects\BubbleShowCase\bubbleshowcase\bubbleshowcaseview.iml" filepath="C:\Users\jcampos\StudioProjects\BubbleShowCase\bubbleshowcase\bubbleshowcaseview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BubbleShowCase-Android.iml" filepath="$PROJECT_DIR$/.idea/modules/BubbleShowCase-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BubbleShowCase-Android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BubbleShowCase-Android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bubbleshowcase/BubbleShowCase-Android.bubbleshowcase.iml" filepath="$PROJECT_DIR$/.idea/modules/bubbleshowcase/BubbleShowCase-Android.bubbleshowcase.iml" />
     </modules>
   </component>
 </project>
