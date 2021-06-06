@@ -134,18 +134,18 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
             val animation = AnimationUtils.getFadeInAnimation(0, DURATION_BACKGROUND_ANIMATION)
             backgroundDimLayout?.let {
                 val containerLayout =
-                    mRootView.findViewById<FrameLayout>(com.google.android.material.R.id.container)
+                    mRootView?.findViewById<FrameLayout>(com.google.android.material.R.id.container)
                 ViewCompat.setTranslationZ(
                     backgroundDimLayout!!,
                     ViewCompat.getZ(rootView.parent as View)
                 )
-                containerLayout.addView(
+                containerLayout?.addView(
                     AnimationUtils.setAnimationToView(
                         backgroundDimLayout!!,
                         animation
                     ), -1
                 )
-                containerLayout.requestLayout()
+                containerLayout?.requestLayout()
             }
         }
     }
