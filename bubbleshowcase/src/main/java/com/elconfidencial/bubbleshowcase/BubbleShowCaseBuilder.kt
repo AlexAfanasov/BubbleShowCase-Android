@@ -2,16 +2,16 @@ package com.elconfidencial.bubbleshowcase
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.core.content.ContextCompat
 import java.lang.ref.WeakReference
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by jcampos on 04/09/2018.
  */
-class BubbleShowCaseBuilder{
+class BubbleShowCaseBuilder {
 
     internal var mActivity: WeakReference<Activity>? = null
     internal var mRootView: View? = null
@@ -21,6 +21,7 @@ class BubbleShowCaseBuilder{
     internal var mCloseAction: Drawable? = null
     internal var mBackgroundColor: Int? = null
     internal var mTextColor: Int? = null
+    internal var mBottomPadding: Int? = null
     internal var mTitleTextSize: Int? = null
     internal var mSubtitleTextSize: Int? = null
     internal var mHighlightMode: BubbleShowCase.HighlightMode? = null
@@ -39,12 +40,12 @@ class BubbleShowCaseBuilder{
     /**
      * Builder constructor. It needs an instance of the current activity to convert it to a weak reference in order to avoid memory leaks
      */
-    constructor(activity: Activity){
+    constructor(activity: Activity) {
         mActivity = WeakReference(activity)
     }
 
     /**
-     * Title of the BubbleShowCase. This text is bolded in the view.
+     * Root view for bottomSheet case
      */
     fun viewRoot(view: View?): BubbleShowCaseBuilder {
         mRootView = view
@@ -128,6 +129,14 @@ class BubbleShowCaseBuilder{
      */
     fun textColor(color: Int): BubbleShowCaseBuilder {
         mTextColor = color
+        return this
+    }
+
+    /**
+     * Padding for BubbleView
+     */
+    fun bottomPadding(padding: Int): BubbleShowCaseBuilder {
+        mBottomPadding = padding
         return this
     }
 
@@ -258,9 +267,9 @@ class BubbleShowCaseBuilder{
      * Build the BubbleShowCase object from the builder one
      */
     private fun build(): BubbleShowCase {
-        if(mIsFirstOfSequence ==null)
+        if (mIsFirstOfSequence == null)
             mIsFirstOfSequence = true
-        if(mIsLastOfSequence ==null)
+        if (mIsLastOfSequence == null)
             mIsLastOfSequence = true
 
         return BubbleShowCase(this)
@@ -277,9 +286,13 @@ class BubbleShowCaseBuilder{
                 //If the view is not already painted, we wait for it waiting for view changes using OnGlobalLayoutListener
                 onGlobalLayoutListenerTargetView = ViewTreeObserver.OnGlobalLayoutListener {
                     bubbleShowCase.show()
-                    targetView.viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListenerTargetView)
+                    targetView.viewTreeObserver.removeOnGlobalLayoutListener(
+                        onGlobalLayoutListenerTargetView
+                    )
                 }
-                targetView.viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListenerTargetView)
+                targetView.viewTreeObserver.addOnGlobalLayoutListener(
+                    onGlobalLayoutListenerTargetView
+                )
             } else {
                 bubbleShowCase.show()
             }

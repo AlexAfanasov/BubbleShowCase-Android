@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.Toast
 import com.elconfidencial.bubbleshowcase.BubbleShowCase
 import com.elconfidencial.bubbleshowcase.BubbleShowCaseBuilder
 import com.elconfidencial.bubbleshowcase.BubbleShowCaseListener
@@ -27,7 +26,7 @@ class FragmentTest: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpListeners()
     }
-    private var rootViewWTF : View? = null
+    private var rootViewBottomSheet : View? = null
 
     private fun setUpListeners(){
         buttonSimpleShowCase.setOnClickListener { getSimpleShowCaseBuilder().show() }
@@ -43,7 +42,7 @@ class FragmentTest: BottomSheetDialogFragment() {
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
         bottomSheetDialog.setOnShowListener{
-            rootViewWTF = (it as BottomSheetDialog).findViewById<FrameLayout>(com.google.android.material.R.id.container)
+            rootViewBottomSheet = (it as BottomSheetDialog).findViewById<FrameLayout>(com.google.android.material.R.id.container)
         }
         return bottomSheetDialog
     }
@@ -52,7 +51,8 @@ class FragmentTest: BottomSheetDialogFragment() {
     private fun getSimpleShowCaseBuilder(): BubbleShowCaseBuilder {
         return BubbleShowCaseBuilder(this.activity!!)
             .title("Welcome!!!")
-            .viewRoot(rootViewWTF)
+            .viewRoot(rootViewBottomSheet)
+            .bottomPadding(150)
             .description("This is a simple BubbleShowCase with default values.")
             .targetView(buttonSimpleShowCase)
     }

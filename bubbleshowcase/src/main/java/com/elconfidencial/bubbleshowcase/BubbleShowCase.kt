@@ -10,13 +10,12 @@ import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Handler
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import java.lang.ref.WeakReference
 
 
@@ -56,6 +55,7 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
 
     //BubbleMessageView params
     private val mRootView: View? = builder.mRootView
+    private val mBottomPadding: Int? = builder.mBottomPadding
     private val mImage: Drawable? = builder.mImage
     private val mTitle: String? = builder.mTitle
     private val mSubtitle: String? = builder.mSubtitle
@@ -123,7 +123,7 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
                 } else {
                     dismiss()
                 }
-            }, 900L)
+            }, DURATION_BACKGROUND_ANIMATION.toLong())
         } else {
             addBubbleMessageViewOnScreenCenter(bubbleMessageViewBuilder!!, backgroundDimLayout)
         }
@@ -135,17 +135,22 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
             backgroundDimLayout?.let {
                 val containerLayout =
                     mRootView?.findViewById<FrameLayout>(com.google.android.material.R.id.container)
-                ViewCompat.setTranslationZ(
-                    backgroundDimLayout!!,
-                    ViewCompat.getZ(rootView.parent as View)
-                )
-                containerLayout?.addView(
-                    AnimationUtils.setAnimationToView(
-                        backgroundDimLayout!!,
-                        animation
-                    ), -1
-                )
-                containerLayout?.requestLayout()
+                if (containerLayout != null) {
+                    containerLayout.addView(
+                        AnimationUtils.setAnimationToView(
+                            backgroundDimLayout!!,
+                            animation
+                        ), -1
+                    )
+                    containerLayout.requestLayout()
+                } else {
+                    rootView.addView(
+                        AnimationUtils.setAnimationToView(
+                            backgroundDimLayout!!,
+                            animation
+                        )
+                    )
+                }
             }
         }
     }
@@ -377,7 +382,8 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
                         if (isTablet()) getScreenWidth(mActivity.get()!!) - getXposition(targetView) - getMessageViewWidthOnTablet(
                             getScreenWidth(mActivity.get()!!) - getXposition(targetView)
                         ) else 0,
-                        getScreenHeight(mActivity.get()!!) - getYposition(targetView)
+                        getScreenHeight(mActivity.get()!!) - getYposition(targetView) + (mBottomPadding
+                            ?: 0)
                     )
                 } else {
                     showCaseParams.setMargins(
