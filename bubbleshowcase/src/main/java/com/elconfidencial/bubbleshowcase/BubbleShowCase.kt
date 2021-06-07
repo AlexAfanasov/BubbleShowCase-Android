@@ -123,7 +123,7 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
                 } else {
                     dismiss()
                 }
-            }, DURATION_BACKGROUND_ANIMATION.toLong())
+            }, 900L)
         } else {
             addBubbleMessageViewOnScreenCenter(bubbleMessageViewBuilder!!, backgroundDimLayout)
         }
@@ -162,8 +162,9 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
     }
 
     fun finishSequence() {
-        val rootView = getViewRoot(mActivity.get()!!)
-        rootView.removeView(backgroundDimLayout)
+        val containerLayout =
+            mRootView?.findViewById<FrameLayout>(com.google.android.material.R.id.container)
+        containerLayout?.removeView(backgroundDimLayout)
         backgroundDimLayout = null
     }
 
@@ -463,19 +464,22 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
             return null
         }
 
-        val rootView = getViewRoot(mActivity.get()!!)
-        val currentScreenView = rootView.getChildAt(0)
-        currentScreenView.buildDrawingCache()
-        val bitmap: Bitmap
-        bitmap = Bitmap.createBitmap(
-            currentScreenView.drawingCache,
-            getXposition(targetView),
-            getYposition(targetView),
-            targetView.width,
-            targetView.height
-        )
-        currentScreenView.isDrawingCacheEnabled = false
-        currentScreenView.destroyDrawingCache()
+        val containerLayout =
+            mRootView?.findViewById<FrameLayout>(com.google.android.material.R.id.container)
+
+        val currentScreenView = containerLayout?.getChildAt(0)
+        currentScreenView?.buildDrawingCache()
+        val bitmap = currentScreenView?.drawingCache?.let {
+            Bitmap.createBitmap(
+                it,
+                getXposition(targetView),
+                getYposition(targetView),
+                targetView.width,
+                targetView.height
+            )
+        }
+        currentScreenView?.isDrawingCacheEnabled = false
+        currentScreenView?.destroyDrawingCache()
         return bitmap
     }
 
