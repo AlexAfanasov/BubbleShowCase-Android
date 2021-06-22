@@ -5,11 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.graphics.RectF
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Handler
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -486,7 +486,35 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder) {
         }
         currentScreenView?.isDrawingCacheEnabled = false
         currentScreenView?.destroyDrawingCache()
-        return bitmap
+        return bitmap?.let { getRoundedCornerBitmap(it, dpToPx(25f, targetView.context)) }
+    }
+
+    fun dpToPx(dp: Float, context: Context): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            context.resources.displayMetrics
+        )
+            .toInt()
+    }
+    fun getRoundedCornerBitmap(bitmap: Bitmap, pixels: Int): Bitmap? {
+        val output = Bitmap.createBitmap(
+            bitmap.width, bitmap
+                .height, Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(output)
+        val color = -0xbdbdbe
+        val paint = Paint()
+        val rect = Rect(0, 0, bitmap.width, bitmap.height)
+        val rectF = RectF(rect)
+        val roundPx = pixels.toFloat()
+        paint.setAntiAlias(true)
+        canvas.drawARGB(0, 0, 0, 0)
+        paint.setColor(color)
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint)
+        paint.setXfermode(PorterDuffXfermode(PorterDuff.Mode.SRC_IN))
+        canvas.drawBitmap(bitmap, rect, rect, paint)
+        return output
     }
 
     private fun takeScreenshotOfSurfaceView(targetView: View): Bitmap? {
