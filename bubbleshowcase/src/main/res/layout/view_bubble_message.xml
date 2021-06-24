@@ -9,7 +9,6 @@
     android:paddingTop="20dp"
     android:paddingRight="36dp"
     android:elevation="8dp"
-    android:paddingBottom="36dp"
     android:paddingStart="36dp">
 
     <ImageView
