@@ -7,9 +7,10 @@
     android:maxWidth="420dp"
     android:paddingLeft="36dp"
     android:paddingTop="20dp"
-    android:paddingRight="20dp"
+    android:paddingRight="36dp"
     android:elevation="8dp"
-    android:paddingBottom="36dp">
+    android:paddingBottom="36dp"
+    android:paddingStart="36dp">
 
     <ImageView
         android:id="@+id/imageViewShowCase"
@@ -24,16 +25,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageViewArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_arrow_white"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTexts" />
+
     <LinearLayout
         android:id="@+id/layoutTexts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewShowCaseClose"
-        app:layout_constraintStart_toEndOf="@+id/imageViewShowCase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
